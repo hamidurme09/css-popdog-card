@@ -1,0 +1,292 @@
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-dark: rgb(13, 17, 19);
+    --color-light: #fff;
+    --color-accent: rgb(222, 52, 0);
+    --color-accent-dark: rgb(163, 38, 0);
+    --color-secondary: rgb(47, 114, 223);
+}
+
+body {
+    font-family: sans-serif;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: rgb(26, 25, 25);
+    color: var(--color-light);
+
+    padding-top: 4rem;
+}
+
+img {
+    max-width: 100%;
+}
+
+.btn {
+    cursor: pointer;
+    background: var(--color-secondary);
+    color: var(--color-light);
+    padding: .5rem 1rem;
+    border-radius: 100vw;
+    font-weight: bold;
+    text-transform: lowercase;
+    letter-spacing: 1px;
+    border: 0;
+    transition: all 200ms ease-in-out;
+    margin-bottom: 1rem;
+    margin-left: 3rem;
+}
+
+.btn:hover {
+    background: rgb(12, 83, 199);
+}
+
+.game {
+    position: relative;
+    width: 16rem;
+    cursor: pointer;
+    
+}
+.front {
+    transition: all .2s ease-in-out;
+}
+
+.front-img {
+    width: 100%;
+    height: 17rem;
+    border-radius: 10px;
+}
+
+.streamers {
+    display: flex;
+
+}
+.streamers .img,
+.back-streamers .img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;     
+    border: 1px solid var(--color-dark);   
+
+}
+
+.rank {
+    position: absolute;
+    top: 0;
+    right: 1.25rem; 
+    font-weight: bold;
+    font-size: 1.25rem;
+    background: var(--color-dark);
+    padding: 1rem 1rem 1.25rem;
+    clip-path: polygon(100% 0, 100% 100%, 50% 85%, 0% 100% ,0 0);
+    z-index: 1000;
+    transition: all .2s ease-in-out;
+    /* transition: transfrom 200ms cubic-bezier(.21, 1.00, .81, 1.00); */
+}
+.streamers .img:nth-of-type(1) {
+    transform: translate(50%);
+    z-index: 1;
+}
+
+.streamers .img:nth-of-type(2) {
+    transform: translate(25%);
+}
+
+.front .stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.front .name {
+    margin: 1.25rem 0;
+}
+
+.back {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+}
+
+.back-streamers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: .5rem;
+    
+}
+
+.back-streamers .name {
+    font-size: .9rem;
+    font-weight: bold;
+}
+
+.back-streamers .number {
+    font-size: .75rem;
+}
+
+.back-streamers .streamer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.back .streaming-info {
+    columns: 2;
+    margin-bottom: 1rem;
+    column-rule: 1px solid rgba(255, 255, 255, .25);
+    text-align: center;
+}
+
+.back .game-stat {
+    font-size: 1.1rem;
+}
+
+.back .game-stat span {
+    display: block;
+    font-size: .75rem;
+}
+.background {
+    background: rgb(25, 34, 44);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    transform: scale(.5);
+    border-radius: 10px;
+    opacity: 0;
+    overflow: hidden;
+}
+.background img {
+    opacity: .3;
+    clip-path: url(#wave);
+    height: 20%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+.icon {
+    position: relative;
+}
+
+.streamer:hover .icon {
+    transform: translateY(-10%);
+}
+
+.streamer:hover .icon::before {
+    opacity: 1;
+}
+
+.streamer .icon:hover {
+    transform: translateY(-15%) scale(1.2);
+}
+
+.icon::before,
+.icon::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+    opacity: 0;
+}
+ 
+.icon::before {
+    content: "\f04b";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    background: #f00;
+    font-size: .5rem;
+    display: grid;
+    place-items: center; 
+    z-index: 10;
+    transition: all .2s linear;
+}
+
+.icon:hover::before {
+    background: #cc0202;
+}
+
+.icon:hover::after {
+      background: #f00;
+      z-index: 1;
+      animation: pulse .85s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+}
+
+.game:hover .background {
+    opacity: 1;
+    transform: scale(1.4, 1.2);
+    transition: all .2s ease-in-out;
+    /* transition: transfrom 200ms cubic-bezier(.21, 1.00, .81, 1.00), */
+                /* opacity 100ms linear; */
+}
+
+.game:hover .front {
+    transform: translateY(-30%) scale(.8);
+    /* transition: transfrom 200ms cubic-bezier(.21, 1.00, .81, 1.00) */
+}
+
+.game:hover .stats {
+    opacity: 0;
+}
+
+.game:hover .name {
+    animation: gameName 250ms forwards;
+}
+
+.game:hover .rank {
+    transform: translate(130%, -63%);
+}
+
+.game:hover .back {
+    opacity: 1;
+}
+
+@keyframes gameName {
+     0% {
+         text-align: left;
+         opacity: 1;
+     }
+
+     20% {
+        text-align: left;
+        opacity: 0;
+    }
+
+    50% {
+        text-align: center;
+        opacity: 0;
+        transform: scale(1.2);
+    }
+
+    100% {
+        text-align: center;
+        opacity: 1;
+    }
+}
